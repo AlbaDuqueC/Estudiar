@@ -197,16 +197,28 @@ public class BuscaMinas {
 		int lin;
 		int col;
 		boolean ganar = false;
+		boolean salir=false;
 
 		Scanner sc = new Scanner(System.in);
 
 		ImprimirTablero(tableroJugador, columna);
+		
+		do {
 
 		System.out.println("En que posicion quieres pinchar?");
 		System.out.print("linea: ");
 		lin = sc.nextInt();
 		System.out.print("columna: ");
 		col = sc.nextInt();
+		salir=false;
+		try {
+			assert lin<tableroJugador.length && col<columna : "Illo que te has salido del tablero, pon otra vez la respuesta anda";
+		}catch ( AssertionError e) {
+			System.err.println(e);
+			salir=true;
+		}
+		
+		}while(salir);
 
 		if (tableroBase[lin][col] != '*') {
 			ganar = true;
